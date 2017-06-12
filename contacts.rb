@@ -5,7 +5,18 @@ require 'pry'
 require 'bcrypt'
 require 'yaml'
 
-get "/" do
+configure do
+  set :erb, :escape_html => true
+end
 
+get "/" do
   erb :index
+end
+
+get '/add' do
+  erb :add
+end
+
+post "/add_contact" do
+  redirect "/"
 end
