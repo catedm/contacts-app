@@ -1,31 +1,31 @@
 <div class="container">
-  <h1 class="header left black-text">Add Contact</h1>
+  <h1 class="header left black-text">Edit Contact</h1>
   <div class="row">
-    <form class="col s12" method="post" action="/add_contact">
+    <form class="col s12" method="post" action="/edit_contact">
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate" name="first_name">
+          <input id="first_name" type="text" class="validate" name="first_name" value="<%= @first_name %>">
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate" name="last_name">
+          <input id="last_name" type="text" class="validate" name="last_name" value="<%= @last_name %>">
           <label for="last_name">Last Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input id="email" type="email" class="validate" name="email">
+          <input id="email" type="email" class="validate" name="email" value="<%= @email %>">
           <label for="email">Email</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate" name="phone">
+          <input id="last_name" type="text" class="validate" name="phone" value="<%= @phone %>">
           <label for="last_name">Phone</label>
         </div>
       </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="address" type="text" name="address">
+          <input id="address" type="text" name="address" value="<%= @address %>">
           <label for="address">Address</label>
         </div>
       </div>

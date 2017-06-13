@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; X-Content-Type-Options: nosniff;"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Contacts App</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="public/stylesheets/materialize.css" type="text/css" media="screen,projection"/>
+  <link rel="stylesheet" href="/stylesheets/materialize.css" type="text/css"/>
 </head>
-<body>
 
-  <%= yield %>
+  <body>
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="public/javascripts/materialize.js"></script>
-  <script src="public/javascripts/jquery-3.2.1.js"></script>
+    <%= yield %>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/javascripts/materialize.js"></script>
+    <script src="/javascripts/jquery-3.2.1.js"></script>
 
   </body>
 </html>

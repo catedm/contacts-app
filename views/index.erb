@@ -5,11 +5,34 @@
   </div>
 </div>
 
-
-
 <div class="container">
   <div class="section">
+      <table class="striped">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+          </tr>
+        </thead>
 
-
+        <tbody>
+          <% @contacts.each do |contact| %>
+            <tr>
+              <td><%= contact.keys.first %></td>
+              <td><%= contact.values.first["Email"] %></td>
+              <td><%= contact.values.first["Phone"] %></td>
+              <td><%= contact.values.first["Address"] %></td>
+              <td><a href="/<%= contact.keys.first %>/edit">Edit</a></td>
+              <td>
+                <form method="post" action="/<%= contact.keys.first %>/delete">
+                  <button type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
   </div>
 </div>
