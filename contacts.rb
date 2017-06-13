@@ -1,7 +1,6 @@
 require 'sinatra'
-require 'sinatra/reloader'
+require "sinatra/reloader" if development?
 require 'tilt/erubis'
-require 'pry'
 require 'bcrypt'
 require 'yaml'
 
@@ -44,7 +43,7 @@ end
 
 post '/:contact/delete' do
   @contacts.reject! { |contact| contact.include?(params[:contact]) }
-  
+
   session[:message] = "Contact has been deleted."
   redirect "/"
 end
