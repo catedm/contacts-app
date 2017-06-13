@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
+  <% if session[:message] %>
+    <p class="message"><%= session.delete(:message) %></p>
+  <% end %>
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; X-Content-Type-Options: nosniff;"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Contacts App</title>
@@ -9,7 +14,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/materialize.css" type="text/css"/>
 </head>
-
   <body>
 
     <%= yield %>

@@ -7,6 +7,14 @@
   background-color: #e51c23 !important;
 }
 
+.message {
+  text-align: center;
+  padding: 10px;
+  background: #E53935;
+  color: #fff;
+  margin-top: 0px;
+}
+
 .materialize-red-text {
   color: #e51c23 !important;
 }

@@ -44,17 +44,26 @@ end
 
 post '/:contact/delete' do
   @contacts.reject! { |contact| contact.include?(params[:contact]) }
+  
+  session[:message] = "Contact has been deleted."
   redirect "/"
 end
 
 post "/add_contact" do
   new_contact = parse_contact
   session[:contacts] << new_contact
+
+  session[:message] = "Contact has been added."
   redirect "/"
 end
 
-post "/edit_contact" do
-  new_contact = parse_contact
-  session[:contacts] << new_contact
+post "/:contact/edit_contact" do
+  contact_to_edit = params[:contact]
+  @contact = @contacts.select { |c| c.keys.first == contact_to_edit }.first
+  @contacts.delete(@contact)
+
+  edited_contact = parse_contact
+  session[:contacts] << edited_contact
+  session[:message] = "Contact has been updated."
   redirect "/"
 end
