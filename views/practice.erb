@@ -1,0 +1,5 @@
+<ul>
+  <% @books.each do |book| %>
+    <li><%= [:title, :author, :published].map { |key| "#{key}: #{book[key]} " } %></li>
+  <% end %>
+</ul>

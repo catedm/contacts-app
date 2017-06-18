@@ -6,7 +6,12 @@
 .materialize-red {
   background-color: #e51c23 !important;
 }
-
+.header-contacts-link {
+  float: right;
+  padding: 10px;
+  background: #EE6E73;
+  color: #fff;
+}
 .message {
   text-align: center;
   padding: 10px;

@@ -20,13 +20,13 @@
         <tbody>
           <% @contacts.each do |contact| %>
             <tr>
-              <td><%= contact.keys.first %></td>
-              <td><%= contact.values.first["Email"] %></td>
-              <td><%= contact.values.first["Phone"] %></td>
-              <td><%= contact.values.first["Address"] %></td>
-              <td><a href="/<%= contact.keys.first %>/edit">Edit</a></td>
+              <td><%= contact[:name] %></td>
+              <td><%= contact[:email] %></td>
+              <td><%= contact[:phone] %></td>
+              <td><%= contact[:address] %></td>
+              <td><a href="/<%= contact[:name] %>/edit">Edit</a></td>
               <td>
-                <form method="post" action="/<%= contact.keys.first %>/delete">
+                <form method="post" action="/<%= contact[:name] %>/delete">
                   <button type="submit">Delete</button>
                 </form>
               </td>

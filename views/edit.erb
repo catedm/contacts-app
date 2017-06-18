@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="header left black-text">Edit Contact</h1>
   <div class="row">
-    <form class="col s12" method="post" action="/<%= @contact.keys.first %>/edit_contact">
+    <form class="col s12" method="post" action="/<%= @contact[:name] %>/edit_contact">
       <div class="row">
         <div class="input-field col s6">
           <input id="first_name" type="text" class="validate" name="first_name" value="<%= @first_name %>">
@@ -35,3 +35,7 @@
     </form>
   </div>
 </div>
+
+<% content_for :all_contacts do %>
+  <a class="header-contacts-link" href="/">Cancel</a>
+<% end %>
