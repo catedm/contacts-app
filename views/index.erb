@@ -36,3 +36,9 @@
       </table>
   </div>
 </div>
+
+<% content_for :sign_out do %>
+  <form method="post" action="/signout" class="sign-out">
+    <button type="submit">Sign Out</button>
+  </form>
+<% end %>

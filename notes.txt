@@ -1,0 +1,10 @@
+ - create yml file with some users and passes
+ - redirect to signin page at "/"
+ - username and password fields with sign up button
+ - build signup form on signup page
+ - store values in yaml file
+
+ bcrypt:
+ - hop into irb and bcrypt passes in the yaml file
+ - build valid_credentials? method to validate passes
+ using bcrypt

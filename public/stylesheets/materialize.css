@@ -19,7 +19,9 @@
   color: #fff;
   margin-top: 0px;
 }
-
+.sign-out {
+  float: right;
+}
 .materialize-red-text {
   color: #e51c23 !important;
 }

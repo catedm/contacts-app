@@ -13,6 +13,8 @@ configure do
 end
 
 before do
+  @root = File.expand_path("..", __FILE__)
+
   session[:contacts] ||= []
   @contacts = session[:contacts]
 end
@@ -24,8 +26,75 @@ def parse_contact
   new_contact = { :name => full_name, :email => email, :phone => phone, :address => address }
 end
 
+def load_user_credentials
+  credentials_path = File.join(@root, "users.yaml")
+  YAML.load_file(credentials_path)
+end
+
+def valid_credentials?(username, password)
+  credentials = load_user_credentials
+
+  if credentials.key?(username)
+    bcrypt_password = BCrypt::Password.new(credentials[username])
+    bcrypt_password == password
+  else
+    false
+  end
+end
+
+def add_user_to_database(username, password)
+  credentials = load_user_credentials
+  credentials[username] = password.to_s
+  File.open("./users.yaml", "wb") { |f| f.write(credentials.to_yaml) }
+end
+
 get "/" do
+  credentials = load_user_credentials
+
+  if credentials.key?(session[:username])
+    redirect "/index"
+  else
+    erb :signin
+  end
+end
+
+get "/index" do
   erb :index
+end
+
+post "/signin" do
+  username = params[:username]
+  password = params[:password]
+
+  if valid_credentials?(username, password)
+    session[:message] = "Welcome"
+    session[:username] = username
+    redirect "/index"
+  else
+    session[:message] = "Invalid credentials."
+    erb :signin
+  end
+end
+
+post "/signup" do
+  username = params[:username]
+  password = params[:password]
+
+  bcrypt_password = BCrypt::Password.create(password)
+  add_user_to_database(username, bcrypt_password)
+
+  session[:message] = "You have been registered. Please sign in."
+  redirect "/"
+end
+
+post "/signout" do
+  session.delete(:username)
+  session[:message] = "You have been signed out."
+  redirect "/"
+end
+
+get '/signup' do
+  erb :signup
 end
 
 get '/add' do
@@ -46,9 +115,9 @@ end
 post '/:contact/delete' do
   @contact = @contacts.select { |contact| contact[:name] == params[:contact] }.first
   @contacts.delete(@contact)
-  
+
   session[:message] = "Contact has been deleted."
-  redirect "/"
+  redirect "/index"
 end
 
 post "/add_contact" do
@@ -56,7 +125,7 @@ post "/add_contact" do
   session[:contacts] << new_contact
 
   session[:message] = "Contact has been added."
-  redirect "/"
+  redirect "/index"
 end
 
 get "/add_contact" do
@@ -64,7 +133,7 @@ get "/add_contact" do
   session[:contacts] << new_contact
 
   session[:message] = "Contact has been added."
-  redirect "/"
+  redirect "/index"
 end
 
 post "/:contact/edit_contact" do
@@ -74,5 +143,5 @@ post "/:contact/edit_contact" do
   edited_contact = parse_contact
   session[:contacts] << edited_contact
   session[:message] = "Contact has been updated."
-  redirect "/"
+  redirect "/index"
 end

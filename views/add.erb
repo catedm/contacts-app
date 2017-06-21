@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="header left black-text">Add Contact</h1>
   <div class="row">
-    <form class="col s12" method="get" action="/add_contact">
+    <form class="col s12" method="post" action="/add_contact">
       <div class="row">
         <div class="input-field col s6">
           <input id="first_name" type="text" class="validate" name="first_name" required>
@@ -37,5 +37,11 @@
 </div>
 
 <% content_for :all_contacts do %>
-  <a class="header-contacts-link" href="/">All Contacts</a>
+  <a class="header-contacts-link" href="/index">All Contacts</a>
+<% end %>
+
+<% content_for :sign_out do %>
+  <form method="post" action="/signout" class="sign-out">
+    <button type="submit">Sign Out</button>
+  </form>
 <% end %>
